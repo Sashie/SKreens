@@ -24,55 +24,55 @@ import java.io.Serializable;
 import org.bukkit.ChatColor;
 
 public class AnimatedGif implements Serializable {
-    private static final long serialVersionUID = 1L;
-    public String[][][] pixels;
-    private int frameCount;
-    private int width;
-    private int height;
-    private String name;
-    public int currentFrame;
-    
-    public AnimatedGif(final int frameCount, final int width, final int height, final String name) {
-        this.width = width;
-        this.height = height;
-        this.frameCount = frameCount;
-        this.currentFrame = 0;
-        this.name = name;
-        this.pixels = new String[frameCount][width][height];
-    }
-    
-    public int getFrameCount() {
-        return frameCount;
-    }
-    
-    public int getWidth() {
-        return width;
-    }
-    
-    public int getHeight() {
-        return height;
-    }
-    
-    public String getName() {
-        return name;
-    }
-    
-    @Override
-    public String toString() {
-        return ChatColor.AQUA + "'" + name + "'";
-    }
-    
-    public double sizeInMemory() {
-        int sizeInBytes = 0;
-        for (int i = 0; i < frameCount; ++i) {
-            for (int j = 0; j < width; ++j) {
-                for (int k = 0; k < height; ++k) {
-                    sizeInBytes += 5;
-                }
-            }
-        }
-        sizeInBytes += 80;
-        sizeInBytes += name.length() * 8;
-        return sizeInBytes / 1000000.0;
-    }
+	private static final long serialVersionUID = 1L;
+	public String[][][] pixels;
+	private int frameCount;
+	private int width;
+	private int height;
+	private String name;
+	public int currentFrame;
+
+	public AnimatedGif(final int frameCount, final int width, final int height, final String name) {
+		this.width = width;
+		this.height = height;
+		this.frameCount = frameCount;
+		this.currentFrame = 0;
+		this.name = name;
+		this.pixels = new String[frameCount][width][height];
+	}
+
+	public int getFrameCount() {
+		return frameCount;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@Override
+	public String toString() {
+		return ChatColor.AQUA + "'" + name + "'";
+	}
+
+	public double sizeInMemory() {
+		int sizeInBytes = 0;
+		for (int i = 0; i < frameCount; ++i) {
+			for (int j = 0; j < width; ++j) {
+				for (int k = 0; k < height; ++k) {
+					sizeInBytes += 5;
+				}
+			}
+		}
+		sizeInBytes += 80;
+		sizeInBytes += name.length() * 8;
+		return sizeInBytes / 1000000.0;
+	}
 }

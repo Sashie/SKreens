@@ -34,35 +34,33 @@ import skreens.Core;
 
 public class EffRemoveImage extends Effect {
 	private Expression<String> inputIdName;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inputIdName = (Expression<String>) exprs[0];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "remove skreen image named %string%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
-		
-        if (Core.imagesExist(new String[] { idName })) {
-            final File file = new File("plugins/SKreens/images/" + idName + ".dat");
-            if (file.exists() && file.isFile()) {
-                file.delete();
-                Core.sendOpMsg(ChatColor.AQUA + "'" + idName + "'" + ChatColor.GOLD + " was successfully removed!");
-            }
-            else {
-            	Core.sendOpMsg(ChatColor.RED + "File does not exist.");
-            }
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "That image id does not exist");
-        }
+
+		if (Core.imagesExist(new String[] { idName })) {
+			final File file = new File("plugins/SKreens/images/" + idName + ".dat");
+			if (file.exists() && file.isFile()) {
+				file.delete();
+				Core.sendOpMsg(ChatColor.AQUA + "'" + idName + "'" + ChatColor.GOLD + " was successfully removed!");
+			} else {
+				Core.sendOpMsg(ChatColor.RED + "File does not exist.");
+			}
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "That image id does not exist");
+		}
 	}
 }

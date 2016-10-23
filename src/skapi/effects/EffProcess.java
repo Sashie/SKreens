@@ -35,7 +35,7 @@ import skreens.Core;
 public class EffProcess extends Effect {
 	private Expression<String> inputIdName;
 	private Expression<String> inputUrl;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -43,23 +43,23 @@ public class EffProcess extends Effect {
 		inputUrl = (Expression<String>) exprs[1];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "process skreen image named %string% from url %string%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
 		String url = inputUrl.getSingle(e);
-		
+
 		if (Core.imagesExist(new String[] { idName })) {
 			Core.sendOpMsg(ChatColor.RED + "That image id has already been taken.");
-        }  else {
-        	Core.sendOpMsg(ChatColor.GOLD + "Processing Image...");
-            final ImageURL image = new ImageURL(url, idName);
-            image.runTaskAsynchronously((Plugin)Core.pluginInstance);
-        }
+		} else {
+			Core.sendOpMsg(ChatColor.GOLD + "Processing Image...");
+			final ImageURL image = new ImageURL(url, idName);
+			image.runTaskAsynchronously((Plugin) Core.pluginInstance);
+		}
 	}
 }

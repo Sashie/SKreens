@@ -40,7 +40,7 @@ import skreens.SKreen;
 public class EffTeleportToSKreen extends Effect {
 	private Expression<String> inputIdName;
 	private Expression<Player> inputPlayers;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -48,27 +48,27 @@ public class EffTeleportToSKreen extends Effect {
 		inputIdName = (Expression<String>) exprs[1];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "teleport %players% to skreen[ named] %string%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
 		List<Player> players = Arrays.asList(inputPlayers.getAll(e));
-		
+
 		if (Core.SKREENS.containsKey(idName)) {
-            final SKreen skreen = Core.SKREENS.get(idName);
-            final Location loc = new Location(Bukkit.getWorld(skreen.getWorldUID()), skreen.getX(), skreen.getY(), skreen.getZ());
-            for (Player player : players) {
-            	player.teleport(loc);
-            }
-            Core.sendOpMsg(ChatColor.GREEN + "Teleported to " + ChatColor.AQUA + "'" + idName + "'");
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "That array id does not exist");
-        }
+			final SKreen skreen = Core.SKREENS.get(idName);
+			final Location loc = new Location(Bukkit.getWorld(skreen.getWorldUID()), skreen.getX(), skreen.getY(),
+					skreen.getZ());
+			for (Player player : players) {
+				player.teleport(loc);
+			}
+			Core.sendOpMsg(ChatColor.GREEN + "Teleported to " + ChatColor.AQUA + "'" + idName + "'");
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "That array id does not exist");
+		}
 	}
 }

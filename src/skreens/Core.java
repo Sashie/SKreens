@@ -51,8 +51,8 @@ public class Core extends JavaPlugin {
 	public static Hashtable<String, FramePlayer> ActiveFramePlayers;
 
 	public static int maxDisplay;
-	public static  int maxWidth;
-	public static  int maxHeight;
+	public static int maxWidth;
+	public static int maxHeight;
 	public static boolean debugMsgs;
 
 	public Core() {
@@ -62,7 +62,7 @@ public class Core extends JavaPlugin {
 		pluginInstance = this;
 		logger = this.getLogger();
 	}
-  
+
 	@SuppressWarnings("unchecked")
 	public void onEnable() {
 		startMetrics();
@@ -70,7 +70,7 @@ public class Core extends JavaPlugin {
 		if (skript != null) {
 			RegisterEffects.SKreens();
 			RegisterExpressions.SKreens();
-			sendLog( "SKreens Activated!" );
+			sendLog("SKreens Activated!");
 			saveDefaultConfig();
 			try {
 				File folder = new File("plugins/SKreens");
@@ -89,7 +89,7 @@ public class Core extends JavaPlugin {
 				ObjectInputStream in = null;
 				if (skreens.length() > 0L) {
 					in = new ObjectInputStream(fileIn);
-					SKREENS = (Hashtable<String, SKreen>)in.readObject();
+					SKREENS = (Hashtable<String, SKreen>) in.readObject();
 					in.close();
 					for (final SKreen ledArray : SKREENS.values()) {
 						if (ledArray.getIsRunning()) {
@@ -102,12 +102,12 @@ public class Core extends JavaPlugin {
 						}
 					}
 				}
+			} catch (Exception ex) {
 			}
-			catch (Exception ex) {}
 			loadConfigData();
 		} else {
 			Bukkit.getPluginManager().disablePlugin(pluginInstance);
-			sendLog( "Plugin is now disabled. Why you no haz Skript?" );
+			sendLog("Plugin is now disabled. Why you no haz Skript?");
 		}
 	}
 
@@ -126,14 +126,14 @@ public class Core extends JavaPlugin {
 			for (final SKreen skreen : SKREENS.values()) {
 				if (ActiveFramePlayers.containsKey(skreen.getName())) {
 					skreen.setIsRunning(true);
-				}                 else {
+				} else {
 					skreen.setIsRunning(false);
 				}
 			}
 			out.writeObject(SKREENS);
 			out.close();
+		} catch (Exception ex) {
 		}
-		catch (Exception ex) {}
 	}
 
 	public static ArrayList<String> getImageNames() {
@@ -200,18 +200,20 @@ public class Core extends JavaPlugin {
 		debugMsgs = getConfig().getBoolean("debug-messages");
 	}
 
-	public static void sendOpMsg(String string){
+	public static void sendOpMsg(String string) {
 		if (debugMsgs) {
-			for(Player player : Bukkit.getOnlinePlayers()) {
-				if(player.isOp()) {
-					player.sendMessage(ChatColor.DARK_AQUA + "[" + ChatColor.AQUA + "SKreens" + ChatColor.DARK_AQUA + "] " + ChatColor.GREEN + string);
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				if (player.isOp()) {
+					player.sendMessage(ChatColor.DARK_AQUA + "[" + ChatColor.AQUA + "SKreens" + ChatColor.DARK_AQUA
+							+ "] " + ChatColor.GREEN + string);
 				}
 			}
 		}
 	}
 
-	public static void sendLog(String string){
-		Bukkit.getServer().getLogger().info(ChatColor.DARK_AQUA + "[" + ChatColor.AQUA + "SKreens" + ChatColor.DARK_AQUA + "] " + ChatColor.GREEN + string);
+	public static void sendLog(String string) {
+		Bukkit.getServer().getLogger().info(ChatColor.DARK_AQUA + "[" + ChatColor.AQUA + "SKreens" + ChatColor.DARK_AQUA
+				+ "] " + ChatColor.GREEN + string);
 	}
 
 	private void startMetrics() {

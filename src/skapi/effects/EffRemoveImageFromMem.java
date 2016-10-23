@@ -33,39 +33,38 @@ import skreens.SKreen;
 
 public class EffRemoveImageFromMem extends Effect {
 	private Expression<String> inputIdName;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inputIdName = (Expression<String>) exprs[0];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "remove skreen image named %string% from memory";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
-		
-        if (Core.Gifs.containsKey(idName)) {
-            Core.Gifs.remove(idName);
-            for (final SKreen ledArray2 : Core.SKREENS.values()) {
-                String[] gifNames;
-                for (int length = (gifNames = ledArray2.gifNames).length, l = 0; l < length; ++l) {
-                    final String gifName = gifNames[l];
-                    if (gifName.equals(idName)) {
-                        ledArray2.setIsRunning(false);
-                    }
-                }
-            }
-            Core.sendOpMsg(ChatColor.GREEN + "Successfully removed image from memory!");
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "That image is not loaded in currently loaded in memory");
-        }
+
+		if (Core.Gifs.containsKey(idName)) {
+			Core.Gifs.remove(idName);
+			for (final SKreen ledArray2 : Core.SKREENS.values()) {
+				String[] gifNames;
+				for (int length = (gifNames = ledArray2.gifNames).length, l = 0; l < length; ++l) {
+					final String gifName = gifNames[l];
+					if (gifName.equals(idName)) {
+						ledArray2.setIsRunning(false);
+					}
+				}
+			}
+			Core.sendOpMsg(ChatColor.GREEN + "Successfully removed image from memory!");
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "That image is not loaded in currently loaded in memory");
+		}
 		Core.sendOpMsg(ChatColor.GREEN + "Memory Usage: " + Core.memoryUsage() + " Mb");
 	}
 }

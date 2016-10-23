@@ -34,36 +34,35 @@ import skreens.SKreen;
 
 public class EffRemoveArray extends Effect {
 	private Expression<String> inputIdName;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inputIdName = (Expression<String>) exprs[0];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "remove skreen array named %string%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
-		
-        final SKreen ledArray2 = Core.SKREENS.get(idName);
-        if (ledArray2 != null) {
-            final FramePlayer framePlayer2 = Core.ActiveFramePlayers.get(idName);
-            if (framePlayer2 != null) {
-                framePlayer2.cancel();
-                Core.ActiveFramePlayers.remove(idName);
-            }
-            ledArray2.killArmorStands();
-            Core.SKREENS.remove(idName);
-            Core.sendOpMsg(ChatColor.AQUA + "'" + idName + "'" + ChatColor.GOLD + " was successfully removed!");
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "that SKreen id does not exist");
-        }
+
+		final SKreen ledArray2 = Core.SKREENS.get(idName);
+		if (ledArray2 != null) {
+			final FramePlayer framePlayer2 = Core.ActiveFramePlayers.get(idName);
+			if (framePlayer2 != null) {
+				framePlayer2.cancel();
+				Core.ActiveFramePlayers.remove(idName);
+			}
+			ledArray2.killArmorStands();
+			Core.SKREENS.remove(idName);
+			Core.sendOpMsg(ChatColor.AQUA + "'" + idName + "'" + ChatColor.GOLD + " was successfully removed!");
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "that SKreen id does not exist");
+		}
 	}
 }

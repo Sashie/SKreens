@@ -37,7 +37,7 @@ import skreens.SKreen;
 public class EffStart extends Effect {
 	private Expression<String> inputIdName;
 	private Expression<String> inputImages;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -45,67 +45,59 @@ public class EffStart extends Effect {
 		inputImages = (Expression<String>) exprs[1];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "start skreen[ array named] %string% with processed image[s] %strings%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
 		String[] images = inputImages.getAll(e);
-//		System.out.println(images[0]);
-		
+
 		final SKreen skreen = Core.SKREENS.get(idName);
-        if (skreen != null) {
-            boolean gifIsRunning = false;
-            for (int j = 0; j < images.length - 1; ++j) {
-                if (Core.gifIsRunning(images[j])) {
-                    gifIsRunning = true;
-                    break;
-                }
-            }
-            if (!gifIsRunning) {
-            	Core.sendOpMsg(ChatColor.GOLD + "Starting image(s)");
-//            	System.out.println(images.length);
-                final AnimatedGif[] gifs = new AnimatedGif[images.length];
-//                System.out.println("did this go?");
-                skreen.gifNames = new String[images.length];
-                boolean previouslyLoaded = true;
-                for (int i = 0; i < images.length; ++i) {
-//                	System.out.println("test1 " + images[i]);
-//                    System.out.println("test2 " + (i - 1));
-                    if (!Core.Gifs.containsKey(images[i])) {
-//                    	System.out.println("beeeep");
-                        previouslyLoaded = false;
-                        break;
-                    }
-                    gifs[i] = Core.Gifs.get(images[i]);
-                    skreen.gifNames[i] = gifs[i].getName();
-                }
-                if (previouslyLoaded) {
-                    final AnimationLauncher anim = new AnimationLauncher(skreen, false);
-                    anim.start(gifs);
-                }
-                else {
-                    skreen.gifNames = new String[images.length];
-                    for (int i = 0; i < images.length; ++i) {
-                        skreen.gifNames[i] = images[i];
-                    }
-                    if (Core.imagesExist(skreen.gifNames)) {
-                        final AnimationLauncher anim = new AnimationLauncher(skreen, false);
-                        anim.runTaskAsynchronously((Plugin)Core.pluginInstance);
-                    } else {
-                    	Core.sendOpMsg(ChatColor.RED + "One or more of those image ids do not exist.");
-                    }
-                }
-            }
-            else {
-            	Core.sendOpMsg(ChatColor.RED + "One or more of those gifs are already running somewhere else.\n" + "A gif can only be run on one SKreen at a time.");
-            }
-        } else {
-        	Core.sendOpMsg(ChatColor.RED + "SKreen id does not exist");
-        }
+		if (skreen != null) {
+			boolean gifIsRunning = false;
+			for (int j = 0; j < images.length - 1; ++j) {
+				if (Core.gifIsRunning(images[j])) {
+					gifIsRunning = true;
+					break;
+				}
+			}
+			if (!gifIsRunning) {
+				Core.sendOpMsg(ChatColor.GOLD + "Starting image(s)");
+				final AnimatedGif[] gifs = new AnimatedGif[images.length];
+				skreen.gifNames = new String[images.length];
+				boolean previouslyLoaded = true;
+				for (int i = 0; i < images.length; ++i) {
+					if (!Core.Gifs.containsKey(images[i])) {
+						previouslyLoaded = false;
+						break;
+					}
+					gifs[i] = Core.Gifs.get(images[i]);
+					skreen.gifNames[i] = gifs[i].getName();
+				}
+				if (previouslyLoaded) {
+					final AnimationLauncher anim = new AnimationLauncher(skreen, false);
+					anim.start(gifs);
+				} else {
+					skreen.gifNames = new String[images.length];
+					for (int i = 0; i < images.length; ++i) {
+						skreen.gifNames[i] = images[i];
+					}
+					if (Core.imagesExist(skreen.gifNames)) {
+						final AnimationLauncher anim = new AnimationLauncher(skreen, false);
+						anim.runTaskAsynchronously((Plugin) Core.pluginInstance);
+					} else {
+						Core.sendOpMsg(ChatColor.RED + "One or more of those image ids do not exist.");
+					}
+				}
+			} else {
+				Core.sendOpMsg(ChatColor.RED + "One or more of those gifs are already running somewhere else.\n" + "A gif can only be run on one SKreen at a time.");
+			}
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "SKreen id does not exist");
+		}
 	}
 }

@@ -35,7 +35,7 @@ import skreens.SKreen;
 public class EffCreate extends Effect {
 	private Expression<String> idName;
 	private Expression<Location> loc;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
@@ -43,35 +43,34 @@ public class EffCreate extends Effect {
 		loc = (Expression<Location>) exprs[1];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "create skreen[ array named] %string% at %location%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
-		String idName = (String)this.idName.getSingle(e);
+		String idName = (String) this.idName.getSingle(e);
 		Location center = loc.getSingle(e);
-		
+
 		if (!Core.SKREENS.containsKey(idName)) {
-            int displayMax = 0;
-            try {
-                displayMax = Core.maxDisplay;
-                if (Core.SKREENS.size() < displayMax) {
-                    final SKreen ledArray = new SKreen(center.getWorld(), center, idName, 48, 48);
-                    Core.SKREENS.put(idName, ledArray);
-                    Core.sendOpMsg(ChatColor.GOLD + "Successfully created " + ChatColor.AQUA + "'" + idName + "'");
-                }
-                else {
-                	Core.sendOpMsg(ChatColor.RED + "The max number of allowed displays has been reached! Delete an array or increase the max value of displays allowed in config.");
-                }
-            }
-            catch (Exception ex) {
-            	Core.sendOpMsg(ChatColor.RED + "Incorrect display-max config value. Value must be an integer.");
-            }
-        } else {
-        	Core.sendOpMsg(ChatColor.RED + "That SKreen name is already taken");
-        }
+			int displayMax = 0;
+			try {
+				displayMax = Core.maxDisplay;
+				if (Core.SKREENS.size() < displayMax) {
+					final SKreen ledArray = new SKreen(center.getWorld(), center, idName, 48, 48);
+					Core.SKREENS.put(idName, ledArray);
+					Core.sendOpMsg(ChatColor.GOLD + "Successfully created " + ChatColor.AQUA + "'" + idName + "'");
+				} else {
+					Core.sendOpMsg(ChatColor.RED
+							+ "The max number of allowed displays has been reached! Delete an array or increase the max value of displays allowed in config.");
+				}
+			} catch (Exception ex) {
+				Core.sendOpMsg(ChatColor.RED + "Incorrect display-max config value. Value must be an integer.");
+			}
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "That SKreen name is already taken");
+		}
 	}
 }

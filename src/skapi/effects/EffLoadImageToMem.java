@@ -33,35 +33,33 @@ import skreens.Core;
 
 public class EffLoadImageToMem extends Effect {
 	private Expression<String> inputIdName;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inputIdName = (Expression<String>) exprs[0];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "load skreen image named %string% to memory";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
-		
+
 		if (Core.imagesExist(new String[] { idName })) {
-            if (!Core.Gifs.containsKey(idName)) {
-                final AnimationLauncher anim2 = new AnimationLauncher(null, true);
-                Core.sendOpMsg(ChatColor.GOLD + "Loading " + ChatColor.AQUA + "'" + idName + "'");
-                anim2.runTaskAsynchronously(Core.pluginInstance);
-            }
-            else {
-            	Core.sendOpMsg(ChatColor.RED + "That image is already loaded in memory!");
-            }
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "The image id does not exist");
-        }
+			if (!Core.Gifs.containsKey(idName)) {
+				final AnimationLauncher anim2 = new AnimationLauncher(null, true);
+				Core.sendOpMsg(ChatColor.GOLD + "Loading " + ChatColor.AQUA + "'" + idName + "'");
+				anim2.runTaskAsynchronously(Core.pluginInstance);
+			} else {
+				Core.sendOpMsg(ChatColor.RED + "That image is already loaded in memory!");
+			}
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "The image id does not exist");
+		}
 	}
 }

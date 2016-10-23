@@ -34,37 +34,36 @@ import skreens.SKreen;
 
 public class EffStop extends Effect {
 	private Expression<String> inputIdName;
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		inputIdName = (Expression<String>) exprs[0];
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "stop skreen[ array named] %string%";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		String idName = inputIdName.getSingle(e);
-		
+
 		final FramePlayer framePlayer = Core.ActiveFramePlayers.get(idName);
-        if (framePlayer != null) {
-            Core.ActiveFramePlayers.remove(idName);
-            framePlayer.cancel();
-            final SKreen ledArray = Core.SKREENS.get(idName);
-            if (ledArray != null) {
-                ledArray.setIsRunning(false);
-                ledArray.currentGifIndex = 0;
-                ledArray.gifNames = null;
-            }
-            Core.sendOpMsg(ChatColor.GOLD + "Stopped " + ChatColor.AQUA + "'" + idName + "'");
-        }
-        else {
-        	Core.sendOpMsg(ChatColor.RED + "SKreen is not running");
-        }
+		if (framePlayer != null) {
+			Core.ActiveFramePlayers.remove(idName);
+			framePlayer.cancel();
+			final SKreen ledArray = Core.SKREENS.get(idName);
+			if (ledArray != null) {
+				ledArray.setIsRunning(false);
+				ledArray.currentGifIndex = 0;
+				ledArray.gifNames = null;
+			}
+			Core.sendOpMsg(ChatColor.GOLD + "Stopped " + ChatColor.AQUA + "'" + idName + "'");
+		} else {
+			Core.sendOpMsg(ChatColor.RED + "SKreen is not running");
+		}
 	}
 }

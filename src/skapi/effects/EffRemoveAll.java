@@ -33,27 +33,27 @@ import skreens.Core;
 import skreens.SKreen;
 
 public class EffRemoveAll extends Effect {
-	
+
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "remove all skreen arrays";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
 		for (final FramePlayer fp : Core.ActiveFramePlayers.values()) {
-            fp.cancel();
-        }
-        Core.ActiveFramePlayers.clear();
-        for (final SKreen ledArray2 : Core.SKREENS.values()) {
-            ledArray2.killArmorStands();
-        }
-        Core.SKREENS.clear();
-        Core.sendOpMsg(ChatColor.GREEN + "All Skreens have been successfully removed");
+			fp.cancel();
+		}
+		Core.ActiveFramePlayers.clear();
+		for (final SKreen ledArray2 : Core.SKREENS.values()) {
+			ledArray2.killArmorStands();
+		}
+		Core.SKREENS.clear();
+		Core.sendOpMsg(ChatColor.GREEN + "All Skreens have been successfully removed");
 	}
 }

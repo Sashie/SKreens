@@ -32,24 +32,24 @@ import skreens.Core;
 import skreens.SKreen;
 
 public class EffRemoveAllImagesFromMem extends Effect {
-	
+
 	@Override
 	public boolean init(Expression<?>[] exprs, int matchedPattern, Kleenean isDelayed, ParseResult parseResult) {
 		return true;
 	}
-	
+
 	@Override
 	public String toString(@Nullable Event arg0, boolean arg1) {
 		return "remove all skreen images from memory";
 	}
-	
+
 	@Override
 	protected void execute(Event e) {
-        Core.Gifs.clear();
-        for (final SKreen ledArray2 : Core.SKREENS.values()) {
-            ledArray2.setIsRunning(false);
-        }
-        Core.sendOpMsg(ChatColor.GREEN + "Successfully removed all images from memory!");
+		Core.Gifs.clear();
+		for (final SKreen ledArray2 : Core.SKREENS.values()) {
+			ledArray2.setIsRunning(false);
+		}
+		Core.sendOpMsg(ChatColor.GREEN + "Successfully removed all images from memory!");
 		Core.sendOpMsg(ChatColor.GREEN + "Memory Usage: " + Core.memoryUsage() + " Mb");
 	}
 }
