@@ -23,7 +23,6 @@ import javax.annotation.Nullable;
 
 import org.bukkit.ChatColor;
 import org.bukkit.event.Event;
-import org.bukkit.plugin.Plugin;
 
 import animation.AnimationLauncher;
 import ch.njol.skript.lang.Effect;
@@ -55,7 +54,7 @@ public class EffLoadImageToMem extends Effect {
             if (!Core.Gifs.containsKey(idName)) {
                 final AnimationLauncher anim2 = new AnimationLauncher(null, true);
                 Core.sendOpMsg(ChatColor.GOLD + "Loading " + ChatColor.AQUA + "'" + idName + "'");
-                anim2.runTaskAsynchronously((Plugin)Core.pluginInstance);
+                anim2.runTaskAsynchronously(Core.pluginInstance);
             }
             else {
             	Core.sendOpMsg(ChatColor.RED + "That image is already loaded in memory!");
