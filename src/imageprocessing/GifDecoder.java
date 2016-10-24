@@ -594,8 +594,7 @@ public class GifDecoder {
 		} while (blockSize > 0 && !err());
 	}
 
-	public static BufferedImage resizeImageWithHint(final BufferedImage originalImage, final int type,
-			final int IMG_WIDTH, final int IMG_HEIGHT) {
+	public static BufferedImage resizeImageWithHint(final BufferedImage originalImage, final int type, final int IMG_WIDTH, final int IMG_HEIGHT) {
 		final BufferedImage resizedImage = new BufferedImage(IMG_WIDTH, IMG_HEIGHT, type);
 		final Graphics2D g = resizedImage.createGraphics();
 		g.drawImage(originalImage, 0, 0, IMG_WIDTH, IMG_HEIGHT, null);

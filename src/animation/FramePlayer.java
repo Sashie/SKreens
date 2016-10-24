@@ -19,7 +19,6 @@
 
 package animation;
 
-import org.bukkit.World;
 import org.bukkit.entity.ArmorStand;
 import org.bukkit.scheduler.BukkitRunnable;
 
@@ -29,7 +28,6 @@ import skreens.SKreen;
 
 public class FramePlayer extends BukkitRunnable {
 	public SKreen skreen;
-	public World world;
 
 	public FramePlayer(final SKreen skreen) {
 		this.skreen = skreen;

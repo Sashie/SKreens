@@ -184,6 +184,30 @@ public class SKreen implements Serializable {
 		return this.height;
 	}
 
+	public void setLocation(Location loc) {
+		this.worldUID = loc.getWorld().getUID();
+		this.x = loc.getX();
+		this.y = loc.getY();
+		this.z = loc.getZ();
+	}
+
+	public Location getLocation() {
+		final World world = Bukkit.getWorld(this.worldUID);
+		return new Location(world, this.x, this.y, this.z);
+	}
+
+	public void setX(final double x) {
+		this.x = x;
+	}
+
+	public void setY(final double y) {
+		this.y = y;
+	}
+
+	public void setZ(final double z) {
+		this.z = z;
+	}
+
 	public double getX() {
 		return this.x;
 	}

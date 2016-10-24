@@ -40,6 +40,7 @@ import animation.AnimationLauncher;
 import animation.FramePlayer;
 import imageprocessing.AnimatedGif;
 import metrics.Metrics;
+import skapi.registers.RegisterConditions;
 import skapi.registers.RegisterEffects;
 import skapi.registers.RegisterExpressions;
 
@@ -70,6 +71,7 @@ public class Core extends JavaPlugin {
 		if (skript != null) {
 			RegisterEffects.SKreens();
 			RegisterExpressions.SKreens();
+			RegisterConditions.SKreens();
 			sendLog("SKreens Activated!");
 			saveDefaultConfig();
 			try {
