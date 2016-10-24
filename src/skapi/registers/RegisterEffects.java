@@ -33,6 +33,7 @@ public class RegisterEffects {
 		Skript.registerEffect(EffRemoveArray.class, new String[] { "remove skreen array named %string%" } );
 		Skript.registerEffect(EffRemoveImage.class, new String[] { "remove skreen image named %string%" } );
 		Skript.registerEffect(EffRemoveImageFromMem.class, new String[] { "remove skreen image named %string% from memory" } );
+		Skript.registerEffect(EffResize.class, new String[] { "resize skreen[ array named] %string% to width %number% and height %number%" } );
 		Skript.registerEffect(EffStart.class, new String[] { "start skreen[ array named] %string% with processed image[s] %strings%" } );
 		Skript.registerEffect(EffStop.class, new String[] { "stop skreen[ array named] %string%" } );
 		Skript.registerEffect(EffTeleportToSKreen.class, new String[] { "teleport %players% to skreen[ named] %string%" } );
