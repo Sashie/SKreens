@@ -78,13 +78,12 @@ public class AnimationLauncher extends BukkitRunnable {
 								Core.sendOpMsg(ChatColor.RED + "Error processing the image");
 								break;
 							}
-							// break Label_0290;
 						}
 						++index;
 						++j;
 						continue;
 					} else {
-						break Label_0290; // TODO test
+						break Label_0290;
 					}
 				}
 				Core.sendOpMsg(ChatColor.RED + "One or more of those image ids do not exist.");

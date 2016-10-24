@@ -63,8 +63,7 @@ public class EffCreate extends Effect {
 					Core.SKREENS.put(idName, ledArray);
 					Core.sendOpMsg(ChatColor.GOLD + "Successfully created " + ChatColor.AQUA + "'" + idName + "'");
 				} else {
-					Core.sendOpMsg(ChatColor.RED
-							+ "The max number of allowed displays has been reached! Delete an array or increase the max value of displays allowed in config.");
+					Core.sendOpMsg(ChatColor.RED + "The max number of allowed displays has been reached! Delete an array or increase the max value of displays allowed in config.");
 				}
 			} catch (Exception ex) {
 				Core.sendOpMsg(ChatColor.RED + "Incorrect display-max config value. Value must be an integer.");
