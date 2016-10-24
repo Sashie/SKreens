@@ -24,6 +24,6 @@ import skapi.conditions.CondSKreenRunning;
 
 public class RegisterConditions {
 	public static void SKreens() {
-		Skript.registerCondition(CondSKreenRunning.class, "skreen is running");
+		Skript.registerCondition(CondSKreenRunning.class, "skreen[ array named] %string% is running");
 	}
 }

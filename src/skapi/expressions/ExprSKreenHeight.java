@@ -34,7 +34,7 @@ import javax.annotation.Nullable;
 /**
  * Edited by Sashie on 10/20/2016
  */
-//Skript.registerExpression(ExprIDNames.class, String.class, ExpressionType.PROPERTY, "[all ]skreen array names");
+//Skript.registerExpression(ExprSKreenHeight.class, Number.class, ExpressionType.PROPERTY, "height of skreen[ array named] %string%");
 public class ExprSKreenHeight extends SimpleExpression<Number> {
 	private Expression<String> inputIdName;
 

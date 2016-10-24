@@ -29,7 +29,7 @@ import org.bukkit.event.Event;
 
 import animation.FramePlayer;
 
-//Skript.registerCondition(CondSKreenRunning.class, "skreen is running");
+//Skript.registerCondition(CondSKreenRunning.class, "skreen[ array named] %string% is running");
 public class CondSKreenRunning extends Condition {
     private Expression<String> inputIdName;
     

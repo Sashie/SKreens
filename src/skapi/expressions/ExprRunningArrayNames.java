@@ -34,7 +34,7 @@ import java.util.ArrayList;
 /**
  * Edited by Sashie on 10/20/2016
  */
-//Skript.registerExpression(ExprIDNames.class, String.class, ExpressionType.PROPERTY, "[all ]skreen running array names");
+//Skript.registerExpression(ExprRunningArrayNames.class, String.class, ExpressionType.PROPERTY, "[all ]skreen running array names");
 public class ExprRunningArrayNames extends SimpleExpression<String> {
 
     @Override

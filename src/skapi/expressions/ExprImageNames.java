@@ -33,7 +33,7 @@ import java.util.ArrayList;
 /**
  * Edited by Sashie on 10/20/2016
  */
-//Skript.registerExpression(ExprIDNames.class, String.class, ExpressionType.PROPERTY, "[all ]skreen image names");
+//Skript.registerExpression(ExprImageNames.class, String.class, ExpressionType.PROPERTY, "[all ]skreen image names");
 public class ExprImageNames extends SimpleExpression<String> {
 
     @Override

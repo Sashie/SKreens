@@ -29,5 +29,7 @@ public class RegisterExpressions {
 		Skript.registerExpression(ExprImageNames.class,String.class,ExpressionType.PROPERTY,"[all ]skreen image names");
 		Skript.registerExpression(ExprRunningArrayNames.class,String.class,ExpressionType.PROPERTY,"[all ]skreen running array names");
 		Skript.registerExpression(ExprRunningImageNames.class,String.class,ExpressionType.PROPERTY,"[all ]skreen running image names");
+		Skript.registerExpression(ExprSKreenWidth.class, Number.class, ExpressionType.PROPERTY, "width of skreen[ array named] %string%");
+		Skript.registerExpression(ExprSKreenHeight.class, Number.class, ExpressionType.PROPERTY, "height of skreen[ array named] %string%");
 	}
 }
