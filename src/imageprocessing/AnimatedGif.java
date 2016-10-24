@@ -63,14 +63,7 @@ public class AnimatedGif implements Serializable {
 	}
 
 	public double sizeInMemory() {
-		int sizeInBytes = 0;
-		for (int i = 0; i < frameCount; ++i) {
-			for (int j = 0; j < width; ++j) {
-				for (int k = 0; k < height; ++k) {
-					sizeInBytes += 5;
-				}
-			}
-		}
+		int sizeInBytes = frameCount * width * height * 5;
 		sizeInBytes += 80;
 		sizeInBytes += name.length() * 8;
 		return sizeInBytes / 1000000.0;
