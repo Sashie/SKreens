@@ -39,13 +39,7 @@ public class ExprImageNames extends SimpleExpression<String> {
     @Override
     @Nullable
     protected String[] get(Event e) {
-    	//final ArrayList<String> cl = new ArrayList<>();
     	final ArrayList<String> imageNames = Core.getImageNames();
-        
-        
-        //for (int k = 10; k < 10 + 10 && k < imageNames.size(); ++k) {
-        //	cl.add(imageNames.get(k).toString());
-        //}
         return imageNames.toArray(new String[imageNames.size()]);
     }
 

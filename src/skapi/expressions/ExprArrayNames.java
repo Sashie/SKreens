@@ -48,7 +48,7 @@ public class ExprArrayNames extends SimpleExpression<String> {
         }
         
         for (int k = 10; k <= 10 + 10 && k < values.size(); ++k) {
-        	cl.add(values.get(k).getName().toString());
+        	cl.add(values.get(k).getName());
         }
         return cl.toArray(new String[cl.size()]);
     }
